@@ -71,14 +71,16 @@ main {
   /* grid-area: main; */
 }
 .backdrop {
+  display: none;
   position: fixed;
   z-index: 100;
-  display: none;
+  opacity: 0;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
   background: rgba(0, 0, 0, 0.5);
+  transition: opacity 200ms linear;
 }
 .mainHeader {
   padding: 0.625rem 1rem;
@@ -177,8 +179,15 @@ main {
   background: white;
   border: none;
 }
+.main-nav__item--cta {
+  animation: wiggle 200ms 3s 8 alternate;
+}
 .mobile-nav {
-  display: none;
+  /* display: none; */
+  /* opacity: 0; */
+  transform: translateX(-100%);
+  /* transform: translateX(-40rem); */
+  transition: transform 500ms ease-in;
   position: fixed;
   z-index: 101;
   top: 0;
@@ -305,6 +314,8 @@ main {
 
 .open {
   display: block !important;
+  opacity: 1 !important;
+  transform: translateY(0) !important;
 }
 
 @media (min-width: 40rem) {
@@ -315,5 +326,14 @@ main {
   .main-footer__links {
     flex-direction: row;
     justify-content: center;
+  }
+}
+
+@keyframes wiggle {
+  from {
+    transform: rotateZ(0);
+  }
+  to {
+    transform: rotateZ(10deg);
   }
 }
