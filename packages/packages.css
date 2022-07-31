@@ -26,6 +26,7 @@
   position: relative;
   top: 60px;
   z-index: 1;
+  overflow: hidden;
 }
 .package:hover,
 .package:active {
@@ -46,13 +47,17 @@
   position: absolute;
   top: 0px;
   right: 0px;
-  margin: 1.25rem;
+  margin: 0;
   font-size: 0.8rem;
   color: white;
   background: #ff5454;
   padding: 0.5rem;
   z-index: 10;
   overflow: hidden;
+  transform: rotateZ(45deg) translateX(3.5rem) translateY(-1rem);
+  transform-origin: center;
+  width: 12rem;
+  text-align: center;
 }
 .package__info {
   padding: 1rem;

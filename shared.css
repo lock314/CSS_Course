@@ -49,34 +49,48 @@
   --fixed-width: 620px;
 }
 /* -------------------------- */
+
+html {
+  height: 100%;
+}
 body {
   font-family: "Montserrat", sans-serif;
-  margin: 0%;
-  box-sizing: border-box;
+  margin: 0;
+  /* box-sizing: border-box; */
+  display: grid;
+  grid-template-rows: 3.7rem auto fit-content(8rem);
+  /*prettier-ignore*/
+  /* grid-area:"header"
+            "main" 
+            "footer"; */
+  height: 100%;
 }
 
 main {
-  min-height: calc(100vh-3.5rem - 8rem);
-  margin-top: 3.5rem;
+  grid-row: 2 / 3;
+  /* grid-area: main; */
 }
 .backdrop {
+  display: none;
   position: fixed;
   z-index: 100;
-  display: none;
+  opacity: 0;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
   background: rgba(0, 0, 0, 0.5);
+  transition: opacity 200ms linear;
 }
 .mainHeader {
   padding: 0.625rem 1rem;
   background: #2ddf5c;
   width: 100%;
   position: fixed;
-  top: 0%;
+  top: 0;
+  left: 0;
   z-index: 2;
-  overflow: hidden;
+  /* overflow: hidden; */
   display: flex;
   align-items: center;
   /* justify-content: space-between; */
@@ -100,7 +114,7 @@ main {
   }
 }
 .main-nav {
-  display: flex;
+  display: none;
 }
 @media (min-width: 40rem) {
   .main-nav {
@@ -165,8 +179,15 @@ main {
   background: white;
   border: none;
 }
+.main-nav__item--cta {
+  animation: wiggle 200ms 3s 8 alternate;
+}
 .mobile-nav {
-  display: none;
+  /* display: none; */
+  /* opacity: 0; */
+  transform: translateX(-100%);
+  /* transform: translateX(-40rem); */
+  transition: transform 500ms ease-in;
   position: fixed;
   z-index: 101;
   top: 0;
@@ -268,7 +289,8 @@ main {
 .main-footer {
   background: black;
   padding: 2rem;
-  margin-top: 4rem;
+  margin-top: 3rem;
+  grid-area: 3;
 }
 .main-footer__links {
   list-style: none;
@@ -292,15 +314,26 @@ main {
 
 .open {
   display: block !important;
+  opacity: 1 !important;
+  transform: translateY(0) !important;
 }
 
 @media (min-width: 40rem) {
   .main-footer__link {
-    display: inline-block;
+    /* display: inline-block; */
     margin: 0 1rem;
   }
   .main-footer__links {
     flex-direction: row;
     justify-content: center;
+  }
+}
+
+@keyframes wiggle {
+  from {
+    transform: rotateZ(0);
+  }
+  to {
+    transform: rotateZ(10deg);
   }
 }
